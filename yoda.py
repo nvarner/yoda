@@ -37,6 +37,7 @@ cli.add_command(dev.speedtest)
 cli.add_command(dev.url)
 cli.add_command(dev.hackernews)
 cli.add_command(dev.coinflip)
+cli.add_command(dev.keybindings)
 
 
 @cli.command()

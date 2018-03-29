@@ -9,6 +9,7 @@ import sys
 import pyspeedtest
 import requests
 
+from modules.config import get_config_file_paths
 from .util import *
 
 GOOGLE_URL_SHORTENER_API_KEY = "AIzaSyCBAXe-kId9UwvOQ7M2cLYR7hyCpvfdr7w"
@@ -153,3 +154,17 @@ def coinflip():
     import random
     side = random.randint(1, 100) % 2
     click.echo('Heads' if side == 1 else 'Tails')
+
+
+@dev.command()
+def keybindings():
+    import csv
+
+    keybindings_config_file_path = get_config_file_paths()["KEYBINDINGS_CONFIG_FILE_PATH"]
+    keybindings_config_folder_path = get_folder_path_from_file_path(
+        keybindings_config_file_path)
+
+    with open(keybindings_config_folder_path + '/firefox.csv') as binding_file:
+        csv_reader = csv.reader(binding_file)
+        for row in csv_reader:
+            click.echo(' '.join(row))
